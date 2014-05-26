@@ -32,7 +32,13 @@ import org.apache.hadoop.util.ToolRunner;
  */
 public class Main {
 	public enum Programs {
-		NER("ner", "Perform named entity recognition on wet (extracted text) files."), SERVERTYPE("servertype", "Extract server type from wat (metadata) files."), HREF("href", "Extract links from http responses in warc (full crawl output) files."), HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job).");
+		NER("ner", "Perform named entity recognition on wet (extracted text) files."), 
+		SERVERTYPE("servertype", "Extract server type from wat (metadata) files."), 
+		HREF("href", "Extract links from http responses in warc (full crawl output) files."), 
+		HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job)."),
+		WORDCOUNT("wordcount", "Count the number of words in total")
+		
+		;
 
 		private final String name;
 		private final String description;
@@ -70,6 +76,8 @@ public class Main {
 			} else if (Programs.HEADERS.getName().equals(tool)) {
 				Headers h = new Headers(args[1]);
 				h.run();
+			} else if (Programs.WORDCOUNT.getName().equals(tool)) {
+				retval = ToolRunner.run(new Configuration(), new WordCounter(), toolArgs);
 			}
 			if (showUsage) {
 				showUsage();
