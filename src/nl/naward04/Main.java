@@ -36,8 +36,8 @@ public class Main {
 		SERVERTYPE("servertype", "Extract server type from wat (metadata) files."), 
 		HREF("href", "Extract links from http responses in warc (full crawl output) files."), 
 		HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job)."),
-		WORDCOUNT("wordcount", "Count the number of words in total")
-		
+		WORDCOUNT("wordcount", "Count the number of words in total"),
+		COUNTRY("country","Find the server's country based on GeoIP")
 		;
 
 		private final String name;
@@ -78,6 +78,8 @@ public class Main {
 				h.run();
 			} else if (Programs.WORDCOUNT.getName().equals(tool)) {
 				retval = ToolRunner.run(new Configuration(), new WordCounter(), toolArgs);
+			} else if (Programs.COUNTRY.getName().equals(tool)) {
+				retval = ToolRunner.run(new Configuration(), new Country(), toolArgs);
 			}
 			if (showUsage) {
 				showUsage();
