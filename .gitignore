@@ -53,3 +53,4 @@ target/*
 \.dorsync
 /nbactions.xml
 
+/target/

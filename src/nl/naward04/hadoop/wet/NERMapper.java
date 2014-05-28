@@ -33,7 +33,7 @@ import edu.stanford.nlp.ling.CoreLabel;
 
 /**
  * Map function that from a WarcRecord (wet) reads the text/plain content and
- * performs named entityt recognition. The resulting key, values: tag, term.
+ * performs named entity recognition. The resulting key, values: tag, term.
  * Note that only the first 100 response: text/plain records are processed.
  * Doing this on the full record takes a lot of time. When extending this sample
  * please perform your own filtering of relevant records.
