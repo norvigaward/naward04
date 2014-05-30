@@ -46,6 +46,8 @@ public class AddressRange implements Comparable<AddressRange> {
 	public boolean contains(long address){
 		return (address >= from && address <= to);
 	}
+	
+	
 
 	
 	

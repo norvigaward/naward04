@@ -8,14 +8,14 @@ import java.util.Scanner;
 public class AddressRangeList {
 	
 	private static AddressRangeList instance;
+	
 	private AddressRange[] list;
 	
 	private AddressRangeList(){
-		AddressRangeList ret = new AddressRangeList();
-		ret.populate();
+		populate();
 	}
 	
-	public AddressRangeList getInstance(){
+	public static AddressRangeList getInstance(){
 		if (instance == null){
 			instance = new AddressRangeList();
 		}
@@ -23,14 +23,20 @@ public class AddressRangeList {
 	}
 	
 	private void populate(){
-		Scanner s;
-		s = new Scanner("iplist.csv");
+		Scanner s = null;
+		File f = new File("iplist.csv");
+		try{
+			s = new Scanner(f);
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		}
 		ArrayList<AddressRange>  temp= new ArrayList<AddressRange> (100000);
 		while (s.hasNextLine()){
 			String[] split = s.nextLine().split(";");
-			temp.add(new AddressRange(Integer.parseInt(split[0]),Integer.parseInt(split[1]), split[2]));
+			temp.add(new AddressRange(Long.parseLong(split[0]),Long.parseLong(split[1]), split[2]));
 		}
-		list = (AddressRange[]) temp.toArray();
+		list = new AddressRange[temp.size()];
+		list = temp.toArray(list);
 		s.close();
 	}
 	
@@ -46,15 +52,23 @@ public class AddressRangeList {
 	      else if ( list[middle].contains(address)) 
 	      {
 	       ret = list[middle].getCountry();
-	        break;
+	       break;
 	      }
 	      else {
 	    	  upper = middle - 1;
 	    	  middle = (lower + upper)/2;
 	      }
-		
-		
+		}
 		return ret;
 	}
-
+	
+	public static long convertAddressToLong(String address){
+		String[] addr = address.split("\\.");
+		long ret=0;
+		ret=ret+ Long.parseLong(addr[0]) * 16777216;
+		ret=ret+ Long.parseLong(addr[1]) * 65536;
+		ret=ret+ Long.parseLong(addr[2]) * 256;
+		ret=ret+ Long.parseLong(addr[3]);
+		return ret;
+	}
 }
