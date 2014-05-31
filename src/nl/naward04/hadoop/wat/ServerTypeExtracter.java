@@ -28,7 +28,7 @@ import org.jwat.common.Payload;
 import org.jwat.warc.WarcRecord;
 
 /**
- * Map function that from a WarcRecord (wat) parses the JSON content and extracts the servertype string. The resulting key, values: servertype, 1.  
+ * Map function that from a WarcRecord (wat) parses the JSON content and extracts the country where the server resides. The resulting key, values: country, 1.  
  * 
  * @author mathijs.kattenberg@surfsara.nl
  */
@@ -54,8 +54,8 @@ class ServerTypeExtracter extends Mapper<LongWritable, WarcRecord, Text, LongWri
 				String warcContent = IOUtils.toString(payload.getInputStreamComplete());
 				JSONObject json = new JSONObject(warcContent);
 				try {
-					String server = json.getJSONObject("Envelope").getJSONObject("Payload-Metadata").getJSONObject("HTTP-Response-Metadata").getJSONObject("Headers").getString("Server");
-					context.write(new Text(server), new LongWritable(1));
+					String country = json.getJSONObject("Envelope").getJSONObject("WARC-Header-Metadata").getString("WARC-IP-Address");
+					context.write(new Text(country), new LongWritable(1));
 				} catch (JSONException e) {
 					// Not the JSON we were looking for.. 
 					logger.error(e);
