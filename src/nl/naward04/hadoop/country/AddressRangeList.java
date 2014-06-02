@@ -3,6 +3,7 @@ package nl.naward04.hadoop.country;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 
 /**
  *  Singleton-class that populates and maintains a list of IPv4-address ranges (AddressRange-class) and allows searching through the list using a 
@@ -15,6 +16,8 @@ public class AddressRangeList {
 	
 	//The singleton instance
 	private static AddressRangeList instance;
+	
+	private static final Logger logger = Logger.getLogger(AddressRangeList.class);
 	
 	/**
 	 * The array containing the list of AddressRanges. Is sorted, as the ordering from the sorted CSV-file is maintained.
@@ -42,12 +45,8 @@ public class AddressRangeList {
 	 */
 	private void populate(){
 		Scanner s = null;
-		File f = new File("iplist.csv");
-		try{
-			s = new Scanner(f);
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		}
+		InputStream csvlist = getClass().getClassLoader().getResourceAsStream("iplist.csv");
+		s = new Scanner(csvlist);
 		ArrayList<AddressRange>  temp= new ArrayList<AddressRange> (100000);
 		while (s.hasNextLine()){
 			String[] split = s.nextLine().split(";");

@@ -37,17 +37,10 @@ class CountryLookup extends Mapper<LongWritable, WarcRecord, Text, LongWritable>
 			if (payload == null) {
 				// NOP
 			} else {
-				String warcContent = IOUtils.toString(payload.getInputStreamComplete());
-				JSONObject json = new JSONObject(warcContent);
-				try {
-					String IP = json.getJSONObject("Envelope").getJSONObject("WARC-Header-Metadata").getString("WARC-IP-Address");
-					AddressRangeList list = AddressRangeList.getInstance();
-					String country = list.getCountry(AddressRangeList.convertAddressToLong(IP));
-					context.write(new Text(country), new LongWritable(1));
-				} catch (JSONException e) {
-					// Not the JSON we were looking for.. 
-					logger.error(e);
-				}
+				String IP = value.header.warcIpAddress;
+				AddressRangeList list = AddressRangeList.getInstance();
+				String country = list.getCountry(AddressRangeList.convertAddressToLong(IP));
+				context.write(new Text(country), new LongWritable(1));
 			}
 		}
 	}
