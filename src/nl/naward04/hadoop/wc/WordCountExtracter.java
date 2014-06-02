@@ -3,8 +3,6 @@ package nl.naward04.hadoop.wc;
 import java.io.IOException;
 import java.util.HashMap;
 
-import nl.naward04.hadoop.wet.NERMapper;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

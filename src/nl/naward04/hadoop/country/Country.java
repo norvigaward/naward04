@@ -40,7 +40,7 @@ public class Country extends Configured implements Tool {
 
 		Configuration conf = this.getConf();
 
-		Job job = Job.getInstance(conf, "Find the country that the server's IP-address is assigned to.);
+		Job job = Job.getInstance(conf, "Find the country that the server's IP-address is assigned to.");
 		job.setJarByClass(Country.class);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
