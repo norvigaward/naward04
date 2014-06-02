@@ -17,7 +17,7 @@ package nl.naward04;
 
 import java.util.Arrays;
 
-import nl.award04.hadoop.wc.WordCounter;
+import nl.naward04.hadoop.wc.WordCounter;
 import nl.naward04.hadoop.country.Country;
 import nl.naward04.hadoop.warc.Hrefs;
 import nl.naward04.hadoop.wat.ServerType;
