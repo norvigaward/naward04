@@ -17,6 +17,8 @@ package nl.naward04;
 
 import java.util.Arrays;
 
+import nl.award04.hadoop.wc.WordCounter;
+import nl.naward04.hadoop.country.Country;
 import nl.naward04.hadoop.warc.Hrefs;
 import nl.naward04.hadoop.wat.ServerType;
 import nl.naward04.hadoop.wet.NER;
@@ -31,6 +33,7 @@ import org.apache.hadoop.util.ToolRunner;
  * @author mathijs.kattenberg@surfsara.nl
  */
 public class Main {
+	
 	public enum Programs {
 		NER("ner", "Perform named entity recognition on wet (extracted text) files."), 
 		SERVERTYPE("servertype", "Extract server type from wat (metadata) files."), 

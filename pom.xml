@@ -135,6 +135,13 @@
 					<include>**/*.jar</include>
 				</includes>
 			</resource>
+			<!-- Include the list of countries in the jar file -->
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**/*.csv</include>
+				</includes>
+			</resource>
 		</resources>
 
 		<extensions>

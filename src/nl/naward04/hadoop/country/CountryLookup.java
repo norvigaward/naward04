@@ -18,8 +18,8 @@ import org.jwat.warc.WarcRecord;
  * 
  * @author mathijs.kattenberg@surfsara.nl
  */
-class CountryExtracter extends Mapper<LongWritable, WarcRecord, Text, LongWritable> {
-	private static final Logger logger = Logger.getLogger(CountryExtracter.class);
+class CountryLookup extends Mapper<LongWritable, WarcRecord, Text, LongWritable> {
+	private static final Logger logger = Logger.getLogger(CountryLookup.class);
 
 	private static enum Counters {
 		CURRENT_RECORD, NUM_JSON_RECORDS

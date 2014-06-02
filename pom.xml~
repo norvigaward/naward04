@@ -135,6 +135,13 @@
 					<include>**/*.jar</include>
 				</includes>
 			</resource>
+			<!-- Include the list of countries in the jar file -->
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<include>**/*.csv</include>
+				</excludes>
+			</resource>
 		</resources>
 
 		<extensions>
@@ -182,7 +189,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>nl.surfsara.warcexamples.Main</Main-Class>
+										<Main-Class>nl.naward04.Main</Main-Class>
 									</manifestEntries>
 								</transformer>
 							</transformers>
