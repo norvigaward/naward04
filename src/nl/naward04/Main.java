@@ -21,6 +21,7 @@ import nl.award04.hadoop.wc.WordCounter;
 import nl.naward04.hadoop.country.Country;
 import nl.naward04.hadoop.warc.Hrefs;
 import nl.naward04.hadoop.wat.ServerType;
+import nl.naward04.hadoop.wc.*;
 import nl.naward04.hadoop.wet.NER;
 import nl.naward04.hdfs.Headers;
 

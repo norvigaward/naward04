@@ -49,6 +49,8 @@ class NERMapper extends Mapper<LongWritable, WarcRecord, Text, Text> {
 	private static enum Counters {
 		CURRENT_RECORD, NUM_TEXT_RECORDS
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -56,7 +58,7 @@ class NERMapper extends Mapper<LongWritable, WarcRecord, Text, Text> {
 		super.setup(context);
 		numrecords = 0;
 		try {
-			classifier = ((AbstractSequenceClassifier<CoreLabel>) CRFClassifier.getClassifier(NERMapper.class.getResourceAsStream("/nl/surfsara/warcexamples/hadoop/wet/resources/english.all.3class.distsim.crf.ser")));
+			classifier = ((AbstractSequenceClassifier<CoreLabel>) CRFClassifier.getClassifier(NERMapper.class.getResourceAsStream("/nl/naward04/hadoop/wet/resources/english.all.3class.distsim.crf.ser")));
 		} catch (Exception e) {
 			logger.error(e);
 		}
