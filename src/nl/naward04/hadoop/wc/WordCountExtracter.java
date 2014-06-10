@@ -55,7 +55,7 @@ public class WordCountExtracter extends Mapper<LongWritable, WarcRecord, Text, L
 					//Do nothing
 				} else {
 					String wetContent = IOUtils.toString(payload.getInputStreamComplete());
-					if(wetContent == null || "".equals(wetContent)){
+					if (wetContent == null || "".equals(wetContent)) {
 						//DO nothing
 					} else {
 						Scanner sc = new Scanner(wetContent);
