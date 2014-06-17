@@ -138,9 +138,9 @@
 			<!-- Include the list of countries in the jar file -->
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
-				<excludes>
+				<includes>
 					<include>**/*.csv</include>
-				</excludes>
+				</includes>
 			</resource>
 		</resources>
 

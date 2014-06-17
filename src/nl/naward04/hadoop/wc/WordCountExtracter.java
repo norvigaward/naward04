@@ -2,6 +2,7 @@ package nl.naward04.hadoop.wc;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.io.LongWritable;
@@ -32,6 +33,13 @@ public class WordCountExtracter extends Mapper<LongWritable, WarcRecord, Text, L
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void setup(Context context) throws IOException, InterruptedException {
+		wordsToCount.put("wodka", 0);
+		wordsToCount.put("beer", 0);
+		wordsToCount.put("wine", 0);
+		wordsToCount.put("vodka", 0);
+		wordsToCount.put("weizen", 0);
+		wordsToCount.put("carslberg", 0);
+		wordsToCount.put("heineken", 0);
 		super.setup(context);
 	}
 	
@@ -47,11 +55,21 @@ public class WordCountExtracter extends Mapper<LongWritable, WarcRecord, Text, L
 					//Do nothing
 				} else {
 					String wetContent = IOUtils.toString(payload.getInputStreamComplete());
-					if(wetContent == null || "".equals(wetContent)){
+					if (wetContent == null || "".equals(wetContent)) {
 						//DO nothing
 					} else {
-						int wc = (wetContent.split("\\s+")).length;
-						context.write(new Text("wc"), new LongWritable(wc));
+						Scanner sc = new Scanner(wetContent);
+						while(sc.hasNext()){
+							String word = sc.next().toLowerCase();
+							if(wordsToCount.containsKey(word)){
+								wordsToCount.put(word, (wordsToCount.get(word))+1);
+							}
+						}
+						for(String word : wordsToCount.keySet()) {
+							//if(wordsToCount.get(word) > 0) {
+								context.write(new Text(word), new LongWritable(wordsToCount.get(word)));
+							//}
+						}
 					}
 						
 				}

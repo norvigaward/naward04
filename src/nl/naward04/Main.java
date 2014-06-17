@@ -24,6 +24,7 @@ import nl.naward04.hadoop.wat.ServerType;
 import nl.naward04.hadoop.wc.*;
 import nl.naward04.hadoop.wet.NER;
 import nl.naward04.hdfs.Headers;
+import nl.naward04.wordtree.WordTreePopulizer;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.util.ToolRunner;
@@ -41,7 +42,8 @@ public class Main {
 		HREF("href", "Extract links from http responses in warc (full crawl output) files."), 
 		HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job)."),
 		WORDCOUNT("wordcount", "Count the number of words in total"),
-		COUNTRY("country","Find the server's country based on GeoIP")
+		COUNTRY("country","Find the server's country based on GeoIP"),
+		TEST("test", "Test the wordtree")
 		;
 
 		private final String name;
@@ -62,6 +64,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		
 		int retval = 0;
 		boolean showUsage = false;
 		if(args.length <= 0) {
@@ -84,6 +87,8 @@ public class Main {
 				retval = ToolRunner.run(new Configuration(), new WordCounter(), toolArgs);
 			} else if (Programs.COUNTRY.getName().equals(tool)) {
 				retval = ToolRunner.run(new Configuration(), new Country(), toolArgs);
+			} else if (Programs.TEST.getName().equals(tool)) {
+				new WordTreePopulizer();
 			}
 			if (showUsage) {
 				showUsage();
