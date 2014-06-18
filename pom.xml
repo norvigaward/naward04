@@ -123,7 +123,7 @@
 
 	<build>
 		<!-- Change the standard directory for Maven to look for source files -->
-		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<sourceDirectory>${basedir}/src/</sourceDirectory>
 		<resources>
 			<!-- Change the standard directory for Maven to look for resource files -->
 			<resource>

@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.net.URI;
 
-import nl.naward04.hadoop.warc.HrefExtracter.Counters;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.io.LongWritable;
