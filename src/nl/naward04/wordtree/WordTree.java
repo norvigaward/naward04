@@ -1,13 +1,9 @@
 package nl.naward04.wordtree;
 
-import org.apache.log4j.Logger;
-
 import nl.naward04.wordtree.Tree.Node;
-
 
 public class WordTree {
 	private Tree<KeyValuePair<String, Integer>> wordTree;
-//	private Tree<T> wordTree;
 	
 	public WordTree() {
 		wordTree = new Tree<KeyValuePair<String, Integer>>(new KeyValuePair<String, Integer>("", 0));

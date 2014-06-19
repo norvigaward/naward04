@@ -39,6 +39,10 @@
 			<url>http://beehub.nl/surfsara-repo/releases/</url>
 			<releases></releases>
 		</repository>
+		<repository>
+			<id>repo</id>
+			<url>file://${project.basedir}/repo</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -119,6 +123,11 @@
       			<version>4.8.1</version>
      			<scope>test</scope>
     		</dependency>
+		<dependency>
+      			<groupId>4.1.0</groupId>
+      			<artifactId>1</artifactId>
+      			<version>4.1.0</version>
+    		</dependency>
 	</dependencies>
 
 	<build>
@@ -146,6 +155,7 @@
 				<directory>${basedir}/src/main/resources</directory>
 				<includes>
 					<include>**/*.csv</include>
+					<include>beverage-list-en</include>
 				</includes>
 			</resource>
 		</resources>
