@@ -17,6 +17,7 @@ package nl.naward04;
 
 import java.util.Arrays;
 
+import nl.naward04.hadoop.beverages.BeverageCounter;
 import nl.naward04.hadoop.country.Country;
 import nl.naward04.hadoop.warc.Hrefs;
 import nl.naward04.hadoop.wat.ServerType;
@@ -41,6 +42,7 @@ public class Main {
 		HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job)."),
 		WORDCOUNT("wordcount", "Count the number of words in total"),
 		COUNTRY("country","Find the server's country based on GeoIP"),
+		BEVERAGES("beverage", "Find the Beverages per country"),
 		;
 
 		private final String name;
@@ -83,6 +85,8 @@ public class Main {
 				retval = ToolRunner.run(new Configuration(), new WordCounter(), toolArgs);
 			} else if (Programs.COUNTRY.getName().equals(tool)) {
 				retval = ToolRunner.run(new Configuration(), new Country(), toolArgs);
+			} else if (Programs.BEVERAGES.getName().equals(tool)) {
+				retval = ToolRunner.run(new Configuration(), new BeverageCounter(), toolArgs);
 			}
 			if (showUsage) {
 				showUsage();
