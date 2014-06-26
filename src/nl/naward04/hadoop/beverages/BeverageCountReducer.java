@@ -8,6 +8,12 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 
+/**
+ * Reducer for countring beverages on a WebPage
+ * Takes as input a key-value pair where the key is a string countrycode and the value is a BeverageMap (HashMap) with keys as beverage strings and the value the count of the beverage
+ * 
+ * The reducer will add the counts of all beverages together
+ */
 public class BeverageCountReducer extends Reducer<Text, BeverageMapWritable, Text, BeverageMapWritable> {
 
 	@Override
