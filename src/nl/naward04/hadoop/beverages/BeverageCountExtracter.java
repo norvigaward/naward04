@@ -24,6 +24,12 @@ import com.aliasi.dict.ExactDictionaryChunker;
 import com.aliasi.dict.MapDictionary;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 
+/**
+ * Main Mapper class for counting beverages on a WebPage
+ *
+ * Takes as input a Key-value pair where the key is a LongWritable and the Value is a WarcRecord
+ * Outputs a Key-value pair where the key is a countrycode string and the value is a BeverageMap (HashMap) with keys as beverage strings and the value a longwritable count
+ */
 public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Text, BeverageMapWritable> {
 
 	private final Set<String> invalidTLDs = new TreeSet<String>();

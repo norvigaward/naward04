@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
  *  Singleton-class that populates and maintains a list of IPv4-address ranges (AddressRange-class) and allows searching through the list using a 
  *  binary search. Requires a ;-delimited iplist.csv file in the path containing non-overlapping sorted IP-ranges.
  * 
- * @author Marc Hulsebosch
  *
  */
 public class AddressRangeList {
