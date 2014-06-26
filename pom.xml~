@@ -105,7 +105,7 @@
 			<version>20140107</version>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
 			<version>3.3.1</version>
@@ -118,11 +118,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-      			<groupId>org.junit</groupId>
-      			<artifactId>org.junit</artifactId>
+      			<groupId>junit</groupId>
+      			<artifactId>junit</artifactId>
       			<version>4.8.1</version>
      			<scope>test</scope>
-    		</dependency>
+    		</dependency>-->
 		<dependency>
       			<groupId>4.1.0</groupId>
       			<artifactId>1</artifactId>
@@ -132,7 +132,7 @@
 
 	<build>
 		<!-- Change the standard directory for Maven to look for source files -->
-		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<sourceDirectory>${basedir}/src/</sourceDirectory>
 		<resources>
 			<!-- Change the standard directory for Maven to look for resource files -->
 			<resource>

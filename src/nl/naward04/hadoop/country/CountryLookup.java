@@ -1,9 +1,7 @@
 
 package nl.naward04.hadoop.country;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,17 +10,11 @@ import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jwat.common.HttpHeader;
 import org.jwat.common.Payload;
 import org.jwat.warc.WarcRecord;
-
-import com.aliasi.dict.DictionaryEntry;
-import com.aliasi.dict.ExactDictionaryChunker;
-import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 
 /**
  * Map function that from a WarcRecord (warc) parses the headers' content and extracts the country where the server resides. The resulting key, values: country, 1.  

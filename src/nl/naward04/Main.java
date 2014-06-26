@@ -19,11 +19,7 @@ import java.util.Arrays;
 
 import nl.naward04.hadoop.beverages.BeverageCounter;
 import nl.naward04.hadoop.country.Country;
-import nl.naward04.hadoop.warc.Hrefs;
-import nl.naward04.hadoop.wat.ServerType;
 import nl.naward04.hadoop.wc.WordCounter;
-import nl.naward04.hadoop.wet.NER;
-import nl.naward04.hdfs.Headers;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.util.ToolRunner;
@@ -36,10 +32,6 @@ import org.apache.hadoop.util.ToolRunner;
 public class Main {
 	
 	public enum Programs {
-		NER("ner", "Perform named entity recognition on wet (extracted text) files."), 
-		SERVERTYPE("servertype", "Extract server type from wat (metadata) files."), 
-		HREF("href", "Extract links from http responses in warc (full crawl output) files."), 
-		HEADERS("headers", "Dumps all headers from a file (this is not a mapreduce job)."),
 		WORDCOUNT("wordcount", "Count the number of words in total"),
 		COUNTRY("country","Find the server's country based on GeoIP"),
 		BEVERAGES("beverage", "Find the Beverages per country"),
@@ -72,16 +64,7 @@ public class Main {
 		String tool = args[0];
 		String[] toolArgs = Arrays.copyOfRange(args, 1, args.length);
 		try {
-			if (Programs.NER.getName().equals(tool)) {
-				retval = ToolRunner.run(new Configuration(), new NER(), toolArgs);
-			} else if (Programs.SERVERTYPE.getName().equals(tool)) {
-				retval = ToolRunner.run(new Configuration(), new ServerType(), toolArgs);
-			} else if (Programs.HREF.getName().equals(tool)) {
-				retval = ToolRunner.run(new Configuration(), new Hrefs(), toolArgs);
-			} else if (Programs.HEADERS.getName().equals(tool)) {
-				Headers h = new Headers(args[1]);
-				h.run();
-			} else if (Programs.WORDCOUNT.getName().equals(tool)) {
+			if (Programs.WORDCOUNT.getName().equals(tool)) {
 				retval = ToolRunner.run(new Configuration(), new WordCounter(), toolArgs);
 			} else if (Programs.COUNTRY.getName().equals(tool)) {
 				retval = ToolRunner.run(new Configuration(), new Country(), toolArgs);
