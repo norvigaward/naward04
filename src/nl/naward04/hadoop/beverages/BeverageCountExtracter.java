@@ -35,7 +35,6 @@ import edu.stanford.nlp.ling.CoreLabel;
 public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Text, BeverageMapWritable> {
 
 	private final Set<String> invalidTLDs = new TreeSet<String>();
-	private final Set<String> countriesToLookAt = new TreeSet<String>();
 	private static final int MAX_RECORDS = 10;
 	private long numRecords = 0;
 	
@@ -55,47 +54,6 @@ public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Tex
 		invalidTLDs.addAll(Arrays.asList(new String[] { "ad", "as", "bz", "cc",
 				"cd", "cl", "dj", "eu", "fm", "io", "la", "ly", "me", "ms",
 				"nu", "sc", "sr", "su", "tv", "tk", "ws" }));
-		
-		countriesToLookAt.addAll(Arrays.asList(new String[] { 
-				"ar"	,
-				"at"	,
-				"au"	,
-				"be"	,
-				"bg"	,
-				"br"	,
-				"ca"	,
-				"ch"	,
-				"cl"	,
-				"cn"	,
-				"cr"	,
-				"cu"	,
-				"cz"	,
-				"de"	,
-				"dk"	,
-				"es"	,
-				"eu"	,
-				"fr"	,
-				"gb"	,
-				"ie"	,
-				"it"	,
-				"lu"	,
-				"nl"	,
-				"no"	,
-				"nz"	,
-				"pe"	,
-				"pl"	,
-				"pt"	,
-				"ru"	,
-				"se"	,
-				"tr"	,
-				"uk"	,
-				"us"	,
-				"va"	,
-				"ve"	,
-				"za"	,
-
-				
-		}));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -168,7 +126,7 @@ public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Tex
 						if (host != null){	
 							String tld = host.substring(host.lastIndexOf('.') + 1).toLowerCase();
 							if (tld.length() == 2 && tld.matches("[a-z]{2}")){
-								if(countriesToLookAt.contains(tld)) {
+								if(!invalidTLDs.contains(tld)) {
 									country = tld;
 									found = true;
 								}
@@ -180,9 +138,6 @@ public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Tex
 							String IP = value.header.warcIpAddress;
 							if (IP != null) {
 								country = list.getCountry(AddressRangeList.convertAddressToLong(IP)).toLowerCase();
-								if (countriesToLookAt.contains(country)) {
-									found = true;
-								}
 							}
 						}
 						
