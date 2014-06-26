@@ -1,41 +1,484 @@
 Beer
 Ale
+Barleywine
+Bitter ale
+Mild ale
+Old ale
+Pale ale
+Scotch ale
 Porter
 Stout
+Cask ale
+Stock ale
+Fruit beer
 Lager
+Pale lager
+Dry beer
 Bock
 Maerzen
-Pilsner
+Pilsener
+Schwarzbier
+Sahti
+Small beer
 Wheat beer
-Wine
+Witbeer
+Hefeweizen
+Cauim
+Chica
 Cider
+Perry
+Plum jerkum
+Huangjii
+Icariine liquor
+Kasiri
+Kilju
+Kumis
+Mead
+Nihamanchi
+Palm wine
+Pulque
+Parakari
+Sakura
 Sake
-Rose
-Port
+Sonti
+Tepache
+Tonto
+Tiswin
+Wine
+Fruit wine
+Table wine
 Sangria
+Sparkling wine
 Champagne
-Cava
-Prosecco
+Fortified wine
+Port
+Madeira
+Marsala
 Sherry
 Vermouth
+Vinsanto
+Spirits
+Absinthe
+Akvavit
+Applejack
+Arak
+Arrack
+Awamori
+Baijiu
+Borovička
+Cachaça
+Gin
+Damson gin
+Sloe gin
+Horilka
+Kaoliang
+Maotai
+Metaxa
+Mezcal
+Neutral grain spirit
+Ogogoro
+Ouzo
+Palinka
+Pisco
+Poitín
+Rakı
+Rakia
+Slivovitz
+Rum
+Shochu
+Soju
+Tequila
+Ţuică
 Vodka
 Whisky
-Whiskey
-Gin
-Ouzo
-Absinthe
-Rum
+Bourbon whiskey
+Canadian whisky
+Irish whiskey
+Japanese whisky
+Rye whiskey
+Scotch whisky
+Tennessee whiskey
+ManX Spirit
 Brandy
-Genever
+Armagnac
 Cognac
-Jagermeister
-Kahlua
-Baileys
-Tequila
-Cointreau
-Grand Marnier
-Limoncello
-Passoa
-Pisang Ambon
-Triple Sec
-Sambuco
+Fruit brandy
+Eau-de-vie
+Schnapps
+Damassine
+Himbeergeist
+Kirsch
+Poire Williams
+Williamine
+Liqueurs
+Liqueur
+Cerveza
+Cerveza inglesa
+Ale amargo
+Ale leve
+Antiguo ale
+Ale Scotch
+Portero
+Cerveza negra
+Ale Cask
+Cerveza Frutas
+Cerveza Pale
+Cerveza en seco
+Pequeño cerveza
+Cerveza de trigo
+Sidra
+Jerkum Ciruela
+Licor Icariine
+Aguamiel
+Vino de palma
+Bien
+Vino
+Vino de fruta
+Vino de mesa
+Sangría
+Vino espumoso
+Champán
+Vino generoso
+Puerto
+Jerez
+Vermut
+Espíritu
+Ajenjo
+Aguardiente de manzana
+Ginebra
+Ginebra de endrinas
+Alcohol de cereales Neutral
+Ron
+Tuica
+Whisky Bourbon
+Whisky canadiense
+Whisky irlandés
+Whisky japonés
+Rye whisky
+Whisky escocés
+ManX Espíritu
+Coñac
+El brandy de frutas
+Aguardiente
+Licores
+Licor
+Cerveja
+Cerveja Amarga
+Ale Velho
+Porteiro
+Corpulento
+Banco de cerveja
+Fruit cerveja
+Lager pálido
+Cerveja seco
+Cerveja forte escura
+Pequeno cerveja
+Cerveja de trigo
+Cidra
+Perada
+Hidromel
+O vinho de palma
+Causa
+Vinho
+Vinho de fruta
+Vinho de mesa
+Vinho espumante
+Champanhe
+Os vinhos
+Porto
+Xerez
+Vermute
+Espíritos
+Absinto
+Aguardente de maçã
+Araca
+Ameixa gin
+Aguardente de cereais neutro
+Poitin
+Uísque Bourbon
+Whisky canadense
+Uísque irlandês
+Uísque japonês
+Uísque escocês
+Manx Espírito
+Conhaque
+Conhaque da fruta
+Bier
+Portier
+Auf ale
+Fruchtbier
+Lagerbier
+Helles Lagerbier
+Trocken Bier
+Märzen
+Kleine Bier
+Weizenbier
+Most
+Birnenmost
+Icariine Schnaps
+Met
+Palmwein
+Wein
+Tischwein
+Sekt
+Champagner
+Likörwein
+Wermut
+Spirituosen
+Absinth
+Arrak
+Neutral Getreidebrand
+Sliwowitz
+Wodka
+Bourbon-Whiskey
+Japanischen Whisky
+ManX Geist
+Obstbrände
+Schnaps
+Liköre
+Likör
+Bière
+Ale amer
+Vieille bière
+Bière en fût
+Fruit de la bière
+Lager pâle
+Bière à sec
+Petite bière
+La bière de blé
+Cidre
+Poiré
+Liqueur Icariine
+Hydromel
+Vin de palme
+Saké
+Vin
+Vin de fruits
+Vin de table
+Vin pétillant
+Les vins fortifiés
+Madère
+Spiritueux
+Calvados
+Alcool de grain neutre
+Rhum
+Bourbon whisky
+Le whisky canadien
+Whiskey irlandais
+Whisky japonais
+Le whisky de seigle
+Tennessee whisky
+Manx Esprit
+Bira
+Acı ale
+Hafif ale
+Eski ale
+Soluk ale
+Hamal
+Şişman
+Stok ale
+Meyve birası
+Alman birası
+Kuru bira
+Siyah bira
+Hafif bira
+Buğday birası
+Elma şarabı
+Armut şarabı
+Erik jerkum
+Icariine likör
+Bal likörü
+Palm şarap
+Hatır
+Şarap
+Meyve şarap
+Sofra şarabı
+Köpüklü şarap
+Şampanya
+Güçlendirilmiş şarap
+Liman
+Şeri
+Alkollü içkiler
+Pelin
+Elma rakısı
+Cin
+Damson cin
+Sloe cin
+Nötr tahıl ruhu
+Uzo
+Rom
+Tekila
+Votka
+Bourbon viski
+Kanada viski
+İrlanda viskisi
+Japon viski
+Çavdar viskisi
+Scotch viski
+Tennessee viski
+Manx Ruh
+Brendi
+Konyak
+Meyve brendi
+Likörler
+Birra
+Ale Lieve
+Portiere
+Archivio ale
+Birra alla frutta
+Birra chiara
+Birra secco
+Birra piccola
+Birra di frumento
+Sidro
+Liquore Icariine
+Prateria
+Vino di palma
+Amor
+Vino di frutta
+Vino da tavola
+Spumante
+Vino liquoroso
+Madera
+Assenzio
+Acquavite di cereali Neutral
+Raki
+Whisky canadese
+Whiskey irlandese
+Whisky giapponese
+Manx Spirito
+Acquavite di frutta
+Grappa
+Liquori
+Liquore
+Piwo
+Gorzkie piwo
+Łagodne piwo
+Stary ale
+Tęgi
+Beczki piwo
+ALE Zdjęcie
+Owoce piwo
+Suche piwo
+Małe piwo
+Pszenicy piwo
+Jabłecznik
+Wino z gruszek
+Icariine alkohol
+Miód
+Wina palmowego
+Wzgląd
+Wino
+Wino owocowe
+Wino stołowe
+Wino musujące
+Szampan
+Wzmacniane wino
+Duchy
+Absynt
+Gin z tarniny
+Neutralny spirytus zbożowy
+Śliwowica
+Wódka
+Kanadyjska whisky
+Irlandzka whiskey
+Japońska whisky
+Żyto whisky
+Szkocka whisky
+Duch Manx
+Koniak
+Owoców brandy
+Wódki
+Wiśniówka
+Likiery
+Likier
+Vataal
+Fruitbier
+Bleke pils
+Droog bier
+Platheid
+Gerstebier
+Pruim jerkum
+Icariine drank
+Weide
+Palmwijn
+Wijn
+Vruchtenwijn
+Tafelwijn
+Mousserende wijn
+Versterkte wijn
+Haven
+Vermout
+Spiritualiën
+Absint
+Appeldrank
+Jenever
+Neutrale gedistilleerde drank van granen
+Canadese whisky
+Ierse whiskey
+Japanse whisky
+Rogge whisky
+Brandewijn
+Fruitbrandewijn
+Likeuren
+Likeur
+Pivo
+Hořké pivo
+Mírné pivo
+Staré pivo
+Světlé pivo
+Scotch pivo
+Vrátný
+Cask pivo
+Stock pivo
+Ovocné pivo
+Světlý ležák
+Čištění pivo
+Bezvýznamný člověk
+Pšeničné pivo
+Jablečný mošt
+Hruškový mošt
+Icariine likér
+Luh
+Palm víno
+Víno
+Ovocné víno
+Stolní víno
+Šumivé víno
+Šampaňské
+Opevněný víno
+Přístav
+Nálada
+Neutrální obilný destilát
+Slivovice
+Kanadská whisky
+Irská whisky
+Japonská whisky
+Skotská whisky
+Koňak
+Ovocné brandy
+Kořalku
+Likéry
+Likér
+Öl
+Frukt öl
+Torr öl
+Schwarz
+OBETYDLIGA MÄNNISKOR
+Veteöl
+PALMVIN
+Frukt vin
+Bordsvin
+Mousserande vin
+Starkvin
+Sprit
+Slånbär gin
+Neutral sädessprit
+Kanadensisk whisky
+Irländsk whiskey
+Japansk whisky
+Skotsk whisky
+Konjak
+Frukt konjak
+Snaps
+Willi

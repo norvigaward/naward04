@@ -22,11 +22,10 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.compress.GzipCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.reduce.LongSumReducer;
 import org.apache.hadoop.util.Tool;
 
@@ -35,50 +34,24 @@ import org.apache.hadoop.util.Tool;
  * 
  * @author mathijs.kattenberg@surfsara.nl
  */
-public class Country extends Configured implements Tool {
+public class CountCountries extends Configured implements Tool {
 
 	@Override
 	public int run(String[] args) throws Exception {
 
-//		Configuration conf = this.getConf();
-//
-//		Job job = Job.getInstance(conf, "Find the country that the server's IP-address is assigned to.");
-//		job.setJarByClass(Country.class);
-//
-//		FileInputFormat.addInputPath(job, new Path(args[0]));
-//		FileOutputFormat.setOutputPath(job, new Path(args[1]));
-//
-//		job.setMapperClass(CountryLookup.class);
-//		job.setReducerClass(LongSumReducer.class);
-//		job.setInputFormatClass(WarcInputFormat.class);
-//		job.setOutputKeyClass(Text.class);
-//		job.setOutputValueClass(LongWritable.class);
-//
-//		// Execute job and return status
-//		return job.waitForCompletion(true) ? 0 : 1;
-		
 		Configuration conf = this.getConf();
 		
-		// Set compress type to compress BLOCKs (not RECORDs)
-		// https://hadoop.apache.org/docs/r2.4.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml
-		// http://hadoop.apache.org/docs/r2.4.0/api/org/apache/hadoop/io/SequenceFile.html
-		conf.set(FileOutputFormat.COMPRESS_TYPE, "BLOCK");
-
-		Job job = Job.getInstance(conf, "Find the country based on domain name or IP address.");
-		job.setJarByClass(Country.class);
+		Job job = Job.getInstance(conf, "Count occurrences of countries");
+		job.setJarByClass(CountCountries.class);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-		job.setMapperClass(CountryLookup.class);
-		job.setInputFormatClass(WarcInputFormat.class);
-		job.setOutputFormatClass(SequenceFileOutputFormat.class);
+		job.setMapperClass(CountryRead.class);
+		job.setReducerClass(LongSumReducer.class);
+		job.setInputFormatClass(SequenceFileInputFormat.class);
 		job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(Text.class);
-		
-		// Enable compression
-		FileOutputFormat.setCompressOutput(job, true);
-		FileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
+		job.setOutputValueClass(LongWritable.class);
 
 		// Execute job and return status
 		return job.waitForCompletion(true) ? 0 : 1;
