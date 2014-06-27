@@ -15,16 +15,17 @@ import java.util.Scanner;
  * @author Marc Hulsebosch and Stijn van Winsen
  *
  */
-public class Interpreter {
+public class DataInterpreter {
 	
 	private HashMap<String,String> toCategories = null;
 	private HashMap<String,String> toEnglish = null;
 	private PrintWriter out = null;
+	
 	public static void main(String[] args){
-		new Interpreter().run(args[0]);
+		new DataInterpreter().run(args[0]);
 	}
 	
-	public Interpreter(){
+	public DataInterpreter(){
 		populateEnglish();
 		populateCategories();
 		makeFile();
@@ -96,7 +97,7 @@ public class Interpreter {
 	}
 
 	private void write(String string) {
-		// TODO Auto-generated method stub
+		out.write(string);
 		
 	}
 	
