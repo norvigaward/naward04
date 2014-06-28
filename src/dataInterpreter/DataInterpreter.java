@@ -2,7 +2,9 @@ package dataInterpreter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -23,7 +25,7 @@ public class DataInterpreter {
 	
 	private HashMap<String,String> toCategories = null;
 	private HashMap<String,String> toEnglish = null;
-	private PrintStream out = null;
+	private PrintWriter out = null;
 	
 	public static void main(String[] args){
 		new DataInterpreter().run(args[0]);
@@ -39,19 +41,18 @@ public class DataInterpreter {
 	}
 	
 	private void makeFile() {
-		out= System.out;
-//			try {
-//				out = new PrintWriter("results"+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) +".csv");
-//			} catch (FileNotFoundException e) {
-//				System.out.println("Results file could not be created");
-//			}
+			try {
+				out = new PrintWriter("results.csv");
+			} catch (FileNotFoundException e) {
+				System.out.println("Results file could not be created");
+			}
 		
 	}
 
 	private void populateEnglish() {
 		toEnglish = new HashMap<String,String>();
 		try {
-			Scanner sc = new Scanner(new File("toenglish.csv"));
+			Scanner sc = new Scanner(new File("toenglish.csv"),"UTF-8");
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
 				String[] values = line.split(";");
@@ -70,7 +71,7 @@ public class DataInterpreter {
 	private void populateCategories() {
 		toCategories  = new HashMap<String,String>();
 		try {
-			Scanner sc = new Scanner(new File("tocategory.csv"));
+			Scanner sc = new Scanner(new File("tocategory.csv"),"UTF-8");
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
 				String[] values = line.split(";");
@@ -89,7 +90,7 @@ public class DataInterpreter {
 	public void run(String file) {
 		Scanner sc = null;
 		try{
-			sc = new Scanner(new File(file));
+			sc = new Scanner(new File(file),"UTF-8");
 			String country = null;
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
@@ -98,8 +99,13 @@ public class DataInterpreter {
 				}
 				if(line.length() == 2){
 					country = line;
-				} else if (line.split("\\s+").length ==2){
-					write(country+";"+toCategory(line.split("\\s+")[0])+";"+toEnglish(line.split("\\s+")[0])+";"+line.split("\\s+")[1]);
+				} else if (line.split("\\s+").length == 2){
+					String cat = toCategory(line.split("\\s+")[0]);
+					String eng = toEnglish(line.split("\\s+")[0]);
+					if (cat == null || eng == null){
+						System.out.println("Error parsing line: \n"+line);
+					}
+					write(country+";"+cat+";"+eng+";"+line.split("\\s+")[1]);
 				}
 			}
 		} catch (FileNotFoundException e) {
