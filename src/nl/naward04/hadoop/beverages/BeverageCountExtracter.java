@@ -47,7 +47,7 @@ public class BeverageCountExtracter extends Mapper<LongWritable, WarcRecord, Tex
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void setup(Context context) throws IOException, InterruptedException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("drinklist.csv")));		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("drinklist.csv"),"UTF-8"));		
 		try {
 			while(true) {
 				String drink = reader.readLine().toLowerCase();
