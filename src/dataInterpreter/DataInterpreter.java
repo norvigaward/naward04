@@ -1,7 +1,11 @@
-package beverageInterpreter;
+package dataInterpreter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.PrintStream;
+import java.io.Writer;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -19,59 +23,63 @@ public class DataInterpreter {
 	
 	private HashMap<String,String> toCategories = null;
 	private HashMap<String,String> toEnglish = null;
-	private PrintWriter out = null;
+	private PrintStream out = null;
 	
 	public static void main(String[] args){
 		new DataInterpreter().run(args[0]);
 	}
 	
 	public DataInterpreter(){
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		System.out.println("Current relative path is: " + s);
 		populateEnglish();
 		populateCategories();
 		makeFile();
 	}
 	
 	private void makeFile() {
-			try {
-				out = new PrintWriter("results"+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) +".csv");
-			} catch (FileNotFoundException e) {
-				System.out.println("Results file could not be creatd");
-			}
+		out= System.out;
+//			try {
+//				out = new PrintWriter("results"+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) +".csv");
+//			} catch (FileNotFoundException e) {
+//				System.out.println("Results file could not be created");
+//			}
 		
 	}
 
-	private void populateCategories() {
-		toCategories = new HashMap<String,String>();
-		try {
-			Scanner sc = new Scanner(new File("tocategory.csv"));
-			while(sc.hasNextLine()){
-				String line = sc.nextLine();
-				String[] values = line.split(";");
-				for(int i=1;i<values.length;i++){
-					toCategories.put(values[i],values[0]);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("tocategory.csv not found.");
-		} catch (ArrayIndexOutOfBoundsException e){
-			System.out.println("tocategory.csv is not valid.");
-		}
-		
-	}
-	
 	private void populateEnglish() {
-		toEnglish  = new HashMap<String,String>();
+		toEnglish = new HashMap<String,String>();
 		try {
 			Scanner sc = new Scanner(new File("toenglish.csv"));
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
 				String[] values = line.split(";");
-				toEnglish.put(values[1],values[0]);
+				for(int i=1;i<values.length;i++){
+					toEnglish.put(values[i],values[0]);
+				}
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("toenglish not found.");
+			System.out.println("toenglish.csv not found.");
 		} catch (ArrayIndexOutOfBoundsException e){
-			System.out.println("toenglish is not valid.");
+			System.out.println("toenglish.csv is not valid.");
+		}
+		
+	}
+	
+	private void populateCategories() {
+		toCategories  = new HashMap<String,String>();
+		try {
+			Scanner sc = new Scanner(new File("tocategory.csv"));
+			while(sc.hasNextLine()){
+				String line = sc.nextLine();
+				String[] values = line.split(";");
+				toCategories.put(values[1],values[0]);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("tocategory not found.");
+		} catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("tocategory is not valid.");
 		}
 	}
 
@@ -85,6 +93,9 @@ public class DataInterpreter {
 			String country = null;
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
+				if (line.endsWith("\t")) {
+					line = line.substring(0,line.length()-1);
+				}
 				if(line.length() == 2){
 					country = line;
 				} else if (line.split("\\s+").length ==2){
@@ -97,7 +108,7 @@ public class DataInterpreter {
 	}
 
 	private void write(String string) {
-		out.write(string);
+		out.println(string);
 		
 	}
 	
