@@ -1,6 +1,7 @@
 package dataInterpreter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintStream;
@@ -52,7 +53,7 @@ public class DataInterpreter {
 	private void populateEnglish() {
 		toEnglish = new HashMap<String,String>();
 		try {
-			Scanner sc = new Scanner(new File("toenglish.csv"),"UTF-8");
+			Scanner sc = new Scanner(new FileInputStream("toenglish.csv"),"UTF-8");
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
 				String[] values = line.split(";");
@@ -71,7 +72,7 @@ public class DataInterpreter {
 	private void populateCategories() {
 		toCategories  = new HashMap<String,String>();
 		try {
-			Scanner sc = new Scanner(new File("tocategory.csv"),"UTF-8");
+			Scanner sc = new Scanner(new FileInputStream("tocategory.csv"),"UTF-8");
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
 				String[] values = line.split(";");
@@ -90,7 +91,7 @@ public class DataInterpreter {
 	public void run(String file) {
 		Scanner sc = null;
 		try{
-			sc = new Scanner(new File(file),"UTF-8");
+			sc = new Scanner(new FileInputStream(file),"UTF-8");
 			String country = null;
 			while(sc.hasNextLine()){
 				String line = sc.nextLine();
