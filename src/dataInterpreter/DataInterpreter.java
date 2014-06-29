@@ -137,6 +137,7 @@ public class DataInterpreter {
 		} catch (IOException e){
 			System.out.println("End Of File reached");
 		}
+		out.close();
 		System.out.println("Gearriveerd bij totals, aantal iteraties: "+i+"\nlaatste regel: \n"+line);
 		makeFile("totals.csv");
 		Iterator<String> it = totals.keySet().iterator();
@@ -145,11 +146,11 @@ public class DataInterpreter {
 			System.out.println(cc+";"+totals.get(cc));
 			out.println(cc+";"+totals.get(cc));
 		}
+		out.close();
 	}
 
 	private void write(String string) {
-		out.println(string);
-		
+		out.println(string);		
 	}
 	
 	public String toCategory(String word){
