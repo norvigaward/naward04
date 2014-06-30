@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,6 +34,11 @@ public class DataInterpreter {
 	private HashMap<String,String> toEnglish = null;
 	private HashMap<String,Integer> totals = null;
 	private PrintWriter out = null;
+	private HashMap<String,HashMap<String,Integer>> allDrinks = null;
+	private HashMap<String,Integer> beer = null;
+	private HashMap<String,Integer> wine = null;
+	private HashMap<String,Integer> liquor = null;
+	private LinkedList<String> countries = null;
 	
 	public static void main(String[] args){
 		new DataInterpreter().run(args[0]);
@@ -46,6 +52,15 @@ public class DataInterpreter {
 		populateCategories();
 		
 		totals = new HashMap<String,Integer>();
+		
+		beer = new HashMap<String,Integer>();
+		wine = new HashMap<String,Integer>();
+		liquor = new HashMap<String,Integer>();
+		allDrinks = new HashMap<String,HashMap<String,Integer>>();
+		allDrinks.put("beer",beer);
+		allDrinks.put("wine",wine);
+		allDrinks.put("liquor",liquor);
+		countries = new LinkedList<String>();
 	}
 	
 	private void makeFile(String file) {
@@ -113,6 +128,10 @@ public class DataInterpreter {
 				}
 				if(line.length() == 2){
 					country = line;
+					countries.add(country);
+					beer.put(country,0);
+					wine.put(country,0);
+					liquor.put(country,0);
 				} else if (line.split(" ").length == 2){
 					String cat = toCategory(line.split("\\s+")[0]);
 					String eng = toEnglish(line.split("\\s+")[0]);
@@ -120,14 +139,13 @@ public class DataInterpreter {
 						//System.out.println("Error parsing line: \n"+line);
 					}
 					write(country+";"+cat+";"+eng+";"+line.split("\\s+")[1]);
-					if(cat != null && totals.containsKey(country + ";" + cat)){
+					if(cat != null ){
 						try{
-						totals.put(country + ";" + cat,totals.get(country + ";" + cat)+Integer.parseInt(line.split("\\s+")[1]));
+							Integer current = allDrinks.get(cat).get(country);
+							allDrinks.get(cat).put(country, current + Integer.parseInt(line.split("\\s+")[1]));
 						} catch (NumberFormatException e){
 							System.out.println("Invalid number ignored");
 						}
-					} else if (cat != null) {
-						totals.put(country + ";" + cat,Integer.parseInt(line.split("\\s+")[1]));
 					}
 				}
 				i++;
@@ -140,11 +158,14 @@ public class DataInterpreter {
 		out.close();
 		System.out.println("Gearriveerd bij totals, aantal iteraties: "+i+"\nlaatste regel: \n"+line);
 		makeFile("totals.csv");
-		Iterator<String> it = totals.keySet().iterator();
-		while (it.hasNext()){
-			String cc = it.next();
-			System.out.println(cc+";"+totals.get(cc));
-			out.println(cc+";"+totals.get(cc));
+		
+		for (int cn = 0; cn < countries.size();cn++){
+			String country = countries.get(cn);
+			int beerTotal = beer.get(country);
+			int wineTotal = wine.get(country);
+			int liquorTotal = liquor.get(country);
+			write(country+ ";" + beerTotal+ ";" + wineTotal+ ";" + liquorTotal);
+			
 		}
 		out.close();
 	}
