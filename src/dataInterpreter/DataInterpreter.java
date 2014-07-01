@@ -32,12 +32,12 @@ public class DataInterpreter {
 	
 	private HashMap<String,String> toCategories = null;
 	private HashMap<String,String> toEnglish = null;
-	private HashMap<String,Integer> totals = null;
+	private HashMap<String,Long> totals = null;
 	private PrintWriter out = null;
-	private HashMap<String,HashMap<String,Integer>> allDrinks = null;
-	private HashMap<String,Integer> beer = null;
-	private HashMap<String,Integer> wine = null;
-	private HashMap<String,Integer> liquor = null;
+	private HashMap<String,HashMap<String,Long>> allDrinks = null;
+	private HashMap<String,Long> beer = null;
+	private HashMap<String,Long> wine = null;
+	private HashMap<String,Long> liquor = null;
 	private LinkedList<String> countries = null;
 	
 	public static void main(String[] args){
@@ -51,12 +51,12 @@ public class DataInterpreter {
 		populateEnglish();
 		populateCategories();
 		
-		totals = new HashMap<String,Integer>();
+		totals = new HashMap<String,Long>();
 		
-		beer = new HashMap<String,Integer>();
-		wine = new HashMap<String,Integer>();
-		liquor = new HashMap<String,Integer>();
-		allDrinks = new HashMap<String,HashMap<String,Integer>>();
+		beer = new HashMap<String,Long>();
+		wine = new HashMap<String,Long>();
+		liquor = new HashMap<String,Long>();
+		allDrinks = new HashMap<String,HashMap<String,Long>>();
 		allDrinks.put("beer",beer);
 		allDrinks.put("wine",wine);
 		allDrinks.put("liquor",liquor);
@@ -114,7 +114,7 @@ public class DataInterpreter {
 
 
 	public void run(String file) {
-		int i = 0;
+		long i = 0;
 		BufferedReader br = null;
 		makeFile("results.csv");
 		String line = null;
@@ -129,9 +129,9 @@ public class DataInterpreter {
 				if(line.length() == 2){
 					country = line;
 					countries.add(country);
-					beer.put(country,0);
-					wine.put(country,0);
-					liquor.put(country,0);
+					beer.put(country,(long)0);
+					wine.put(country,(long)0);
+					liquor.put(country,(long)0);
 				} else if (line.split(" ").length == 2){
 					String cat = toCategory(line.split("\\s+")[0]);
 					String eng = toEnglish(line.split("\\s+")[0]);
@@ -141,8 +141,8 @@ public class DataInterpreter {
 					write(country+";"+cat+";"+eng+";"+line.split("\\s+")[1]);
 					if(cat != null ){
 						try{
-							Integer current = allDrinks.get(cat).get(country);
-							allDrinks.get(cat).put(country, current + Integer.parseInt(line.split("\\s+")[1]));
+							Long current = allDrinks.get(cat).get(country);
+							allDrinks.get(cat).put(country, current + Long.parseLong(line.split("\\s+")[1]));
 						} catch (NumberFormatException e){
 							System.out.println("Invalid number ignored");
 						}
@@ -161,10 +161,11 @@ public class DataInterpreter {
 		
 		for (int cn = 0; cn < countries.size();cn++){
 			String country = countries.get(cn);
-			int beerTotal = beer.get(country);
-			int wineTotal = wine.get(country);
-			int liquorTotal = liquor.get(country);
-			write(country+ ";" + beerTotal+ ";" + wineTotal+ ";" + liquorTotal);
+			long beerTotal = beer.get(country);
+			long wineTotal = wine.get(country);
+			long liquorTotal = liquor.get(country);
+			long total = beerTotal + wineTotal + liquorTotal;
+			write(country+ ";" + beerTotal+ ";" + wineTotal+ ";" + liquorTotal + ";" + total);
 			
 		}
 		out.close();
